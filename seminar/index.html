@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>AI 영상 1일 세미나</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Black+Han+Sans&display=swap">
+<style>
+/* 레이아웃: 홍보 쇼츠와 같은 남색·노랑. 휴대폰 한 손 스크롤 기준 한 줄 흐름 → 넓은 화면에서만 2단 */
+:root{
+  --navy:#0f172a; --navy-2:#1e293b; --yellow:#facc15; --paper:#f8f7f3; --ink:#111827; --muted:#5b6474; --line:#e3e1d8; --card:#ffffff;
+  --f-display:"Black Han Sans","IBM Plex Sans KR",sans-serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#11141b;--ink:#eceef2;--muted:#a1a8b5;--line:#2a2f3a;--card:#181c24;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#11141b;--ink:#eceef2;--muted:#a1a8b5;--line:#2a2f3a;--card:#181c24;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.75;word-break:keep-all;overflow-wrap:anywhere}
+.band{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.in{max-width:1040px;margin:0 auto;padding-block:64px}
+h1,h2,h3{margin:0;line-height:1.25;text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,5vw,42px);letter-spacing:-.01em}
+p{margin:0}
+.kicker{font-weight:700;font-size:14px;letter-spacing:.12em;color:var(--muted)}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--yellow);color:var(--navy);font-weight:700;font-size:19px;text-decoration:none;padding:16px 30px;border-radius:999px;box-shadow:0 6px 0 #b48f00}
+.cta:hover{transform:translateY(1px);box-shadow:0 5px 0 #b48f00}
+.cta:focus-visible{outline:3px solid #fff;outline-offset:3px}
+/* 히어로 */
+.hero{background:var(--navy);color:#fff}
+.hero .in{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:48px;align-items:center;padding-block:56px 64px}
+@media (max-width:760px){.hero .in{grid-template-columns:1fr;gap:36px}}
+.badge{display:inline-block;background:var(--yellow);color:var(--navy);font-weight:700;font-size:15px;padding:5px 16px;border-radius:999px}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(44px,7.5vw,76px);line-height:1.12;margin:20px 0 22px}
+.hero h1 em{font-style:normal;color:var(--yellow)}
+.facts{display:grid;gap:6px;font-size:18px;margin-bottom:30px}
+.facts b{display:inline-block;width:56px;color:#94a3b8;font-weight:500;font-size:15px}
+.phone{justify-self:center;width:min(300px,78vw);aspect-ratio:9/16;border-radius:34px;background:#000;border:10px solid #1f2937;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.45)}
+.phone video{width:100%;height:100%;object-fit:cover;display:block}
+/* 진행표 */
+.plan{display:grid;gap:12px;margin-top:28px}
+.bar{display:flex;height:14px;border-radius:7px;overflow:hidden;gap:3px}
+.bar span{background:var(--navy)}
+.bar span:nth-child(2){opacity:.75}.bar span:nth-child(3){background:#b48f00}.bar span:nth-child(4){background:var(--yellow)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .bar span{background:#94a3b8}:root:not([data-theme="light"]) .bar span:nth-child(3){background:#b48f00}:root:not([data-theme="light"]) .bar span:nth-child(4){background:var(--yellow)}}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:760px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.st{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.st .min{font-family:var(--f-display);font-size:30px;color:#b48f00}
+.st h3{font-size:18px;margin:4px 0 6px}
+.st p{font-size:15px;color:var(--muted)}
+/* 미리보기 */
+.preview{background:var(--navy-2);color:#fff}
+.preview .lead{color:#cbd5e1;max-width:60ch;margin-top:12px}
+.vgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:30px}
+@media (max-width:760px){.vgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.vgrid figure{margin:0;display:grid;gap:8px;min-width:0}
+.vgrid video{width:100%;aspect-ratio:16/9;object-fit:contain;background:#000;border-radius:12px;display:block}
+.vgrid figcaption{font-size:14px;color:#cbd5e1}
+.vgrid figcaption b{color:#fff;font-weight:600}
+.more{display:flex;align-items:center;justify-content:center;flex-direction:column;aspect-ratio:16/9;border-radius:12px;border:2px dashed #475569;text-align:center;padding:12px}
+.more strong{font-family:var(--f-display);font-weight:400;font-size:clamp(28px,4vw,40px);color:var(--yellow)}
+.more span{font-size:14px;color:#cbd5e1}
+/* 대상·받는 것 */
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:28px}
+@media (max-width:760px){.two{grid-template-columns:1fr}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px}
+.box h3{font-size:21px;margin-bottom:14px}
+.box ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.box li{display:grid;grid-template-columns:26px 1fr;gap:6px}
+.box li::before{content:"✓";font-weight:700;color:#16a34a}
+.box.gift li::before{content:"●";color:#b48f00;font-size:12px;padding-top:6px}
+/* 정보표 */
+.info{margin-top:28px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--card)}
+.info div{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:15px 22px;border-bottom:1px solid var(--line)}
+.info div:last-child{border-bottom:0}
+.info dt{color:var(--muted);font-weight:600}
+.info dd{margin:0;font-weight:600}
+.faq{display:grid;gap:10px;margin-top:28px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px}
+.faq summary{cursor:pointer;padding:16px 20px;font-weight:700;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"Q. ";color:#b48f00}
+.faq details p{padding:0 20px 18px;color:var(--muted)}
+/* 마지막 */
+.final{background:var(--yellow);color:var(--navy)}
+.final .in{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:40px;align-items:center}
+@media (max-width:760px){.final .in{grid-template-columns:1fr}}
+.final .phone{border-color:var(--navy)}
+.final h2{font-size:clamp(34px,6vw,56px)}
+.final .cta{background:var(--navy);color:#fff;box-shadow:0 6px 0 #000}
+.small{font-size:14px;opacity:.75;margin-top:14px}
+footer{text-align:center;font-size:14px;color:var(--muted);padding-block:28px}
+@media (prefers-reduced-motion:reduce){.cta{transition:none}}
+</style>
+
+<section class="hero band">
+  <div class="in">
+    <div>
+      <span class="badge">1일 세미나 · 90분</span>
+      <h1>AI 영상 제작,<br><em>강의안 받고</em><br>하나씩 따라 만들기</h1>
+      <div class="facts">
+        <div><b>일시</b>11월 20일(금) 저녁 9:00 ~ 10:30</div>
+        <div><b>방식</b>온라인 ZOOM 실시간</div>
+        <div><b>강사</b>나나쿡(nanakook)</div>
+      </div>
+      <a class="cta" id="cta1" href="https://forms.gle/i5SQXCKYaXmUS97q7" target="_blank" rel="noopener">세미나 신청하기 →</a>
+    </div>
+    <div class="phone"><video src="v/SeminarPromo.mp4" poster="p/SeminarPromo.jpg" muted loop playsinline autoplay controls aria-label="세미나 소개 영상"></video></div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="in">
+    <div class="kicker">90분 진행표</div>
+    <h2>코딩을 몰라도, 순서대로 따라가면 영상 1편이 나옵니다</h2>
+    <div class="plan">
+      <div class="bar" aria-hidden="true"><span style="flex:20"></span><span style="flex:15"></span><span style="flex:30"></span><span style="flex:25"></span></div>
+      <div class="steps">
+        <div class="st"><div class="min">20분</div><h3>준비하기</h3><p>내가 쓰는 AI에 강의안 코드 넣는 법 익히기</p></div>
+        <div class="st"><div class="min">15분</div><h3>원리 이해</h3><p>"지금 몇 번째 장면?" 하나로 움직이는 7가지 블록</p></div>
+        <div class="st"><div class="min">30분</div><h3>빨간 글자 바꾸기</h3><p>예제 코드의 빨간 부분만 내 문구·색으로 바꾸기</p></div>
+        <div class="st"><div class="min">25분</div><h3>내 영상 완성</h3><p>효과음을 골라 넣고 mp4 파일로 뽑아 가기</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="preview band">
+  <div class="in">
+    <div class="kicker" style="color:#94a3b8">강의안 미리보기</div>
+    <h2>이런 영상을 직접 만들어요</h2>
+    <p class="lead">아래는 강의안에 들어 있는 예제 중 일부예요. 세미나 참여자께는 <b style="color:var(--yellow)">예제 70개 강의안 전체</b>(영상·코드·효과음 고르기)를 드립니다.</p>
+    <div class="vgrid" id="vgrid">
+      <figure><video data-src="v/Ex51.mp4" poster="p/Ex51.jpg" muted loop playsinline preload="none"></video><figcaption><b>상품 광고</b> · 히어로 등장</figcaption></figure>
+      <figure><video data-src="v/Ex54.mp4" poster="p/Ex54.jpg" muted loop playsinline preload="none"></video><figcaption><b>상품 광고</b> · 가격 쾅! 공개</figcaption></figure>
+      <figure><video data-src="v/Ex57.mp4" poster="p/Ex57.jpg" muted loop playsinline preload="none"></video><figcaption><b>상품 광고</b> · 스피드 줌 펀치</figcaption></figure>
+      <figure><video data-src="v/Ex61.mp4" poster="p/Ex61.jpg" muted loop playsinline preload="none"></video><figcaption><b>강의 홍보</b> · 개강 D-day</figcaption></figure>
+      <figure><video data-src="v/Ex64.mp4" poster="p/Ex64.jpg" muted loop playsinline preload="none"></video><figcaption><b>강의 홍보</b> · 흐르는 후기 띠</figcaption></figure>
+      <figure><video data-src="v/Ex21.mp4" poster="p/Ex21.jpg" muted loop playsinline preload="none"></video><figcaption><b>기본기</b> · 축하 꽃가루</figcaption></figure>
+      <figure><video data-src="v/Ex03.mp4" poster="p/Ex03.jpg" muted loop playsinline preload="none"></video><figcaption><b>기본기</b> · 단어 튀어나오기</figcaption></figure>
+      <figure><video data-src="v/Ex37.mp4" poster="p/Ex37.jpg" muted loop playsinline preload="none" style="object-fit:contain"></video><figcaption><b>쇼츠</b> · 세로 영상 첫 3초 훅</figcaption></figure>
+      <div class="more"><strong>+ 62개 더</strong><span>참여자 전용 강의안에서 공개</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="in">
+    <div class="kicker">누구를 위한 세미나인가요</div>
+    <h2>이런 분께 딱 맞아요</h2>
+    <div class="two">
+      <div class="box"><h3>이런 분께 추천해요</h3><ul>
+        <li>영상 편집 프로그램만 켜면 막막한 분</li>
+        <li>내 상품·책·강의를 짧은 영상으로 알리고 싶은 분</li>
+        <li>AI를 실제 일에 써 보고 싶은 1인 사업자·강사</li>
+        <li>코딩은 처음이지만 한번 해 보고 싶은 분</li>
+      </ul></div>
+      <div class="box gift"><h3>참여하면 받는 것</h3><ul>
+        <li>예제 70개 강의안 페이지 (영상 + 코드 + 효과음 고르기)</li>
+        <li>바로 실행되는 예제 프로젝트 파일 일체</li>
+        <li>저작권 걱정 없는 효과음 12종 · 연습용 상품 사진</li>
+        <li>세미나 중 직접 만든 내 영상 1편</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0">
+  <div class="in" style="padding-top:0">
+    <div class="kicker">안내</div>
+    <h2>일정과 준비물</h2>
+    <dl class="info">
+      <div><dt>일시</dt><dd>2026년 11월 20일(금) 저녁 9:00 ~ 10:30 (90분)</dd></div>
+      <div><dt>방식</dt><dd>온라인 ZOOM 실시간 · 참여 링크는 신청 후 안내</dd></div>
+      <div><dt>강사</dt><dd>나나쿡(nanakook) · AI 활용 교육 · 그림책·시화 작가</dd></div>
+      <div><dt>준비물</dt><dd>노트북 또는 PC + Claude · ChatGPT · Gemini 중 1개 유료 계정 · 휴대폰만으로는 실습이 어려워요</dd></div>
+    </dl>
+    <div class="faq">
+      <details><summary>코딩을 한 번도 안 해 봤는데 따라갈 수 있나요?</summary><p>네. 코드를 처음부터 쓰지 않아요. 완성된 예제를 복사해서 빨간색으로 표시된 문구·색·숫자만 바꾸는 방식이라, 한글 문서 고치듯 따라오시면 됩니다.</p></details>
+      <details><summary>프로그램을 설치해야 하나요? 컴퓨터가 오래됐어요.</summary><p>Claude를 쓰면 설치하지 않아요. 영상을 만드는 작업이 Claude 안에서 이루어져서 컴퓨터 사양과 상관없어요. ChatGPT(데스크톱 앱)나 Gemini(안티그래비티)는 프로그램 설치가 필요해서, 컴퓨터가 오래됐다면 Claude를 추천해요.</p></details>
+      <details><summary>제미나이나 챗GPT 유료만 있어도 되나요?</summary><p>네. Claude · ChatGPT · Gemini 중 유료 1개면 돼요. ChatGPT는 데스크톱 앱에 Remotion 플러그인을, Gemini는 안티그래비티를 설치해서 쓰고, 세미나에서 도구별 방법을 모두 안내해 드려요.</p></details>
+      <details><summary>세미나가 끝나도 혼자 만들 수 있나요?</summary><p>강의안 페이지에 70개 예제가 영상과 코드로 정리되어 있어서, 마음에 드는 장면을 골라 같은 방법으로 계속 만들 수 있어요.</p></details>
+      <details><summary>만든 영상을 상업적으로 써도 되나요?</summary><p>내가 만든 영상은 블로그·쇼츠·상세페이지에 쓸 수 있어요. 함께 드리는 효과음도 직접 제작한 것이라 저작권 걱정이 없습니다. 영상 도구(리모션)의 회사 규모별 라이선스 기준은 세미나에서 함께 안내해 드려요.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="final band">
+  <div class="in">
+    <div class="phone"><video data-src="v/Seminar.mp4" poster="p/Seminar.jpg" muted loop playsinline preload="none" controls aria-label="대화형 세미나 홍보 영상"></video></div>
+    <div>
+      <div class="kicker" style="color:var(--navy);opacity:.7">11월 20일(금) 저녁 9시</div>
+      <h2 style="margin:10px 0 24px">오늘 바로 시작해요</h2>
+      <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap"><a class="cta" id="cta2" href="https://forms.gle/i5SQXCKYaXmUS97q7" target="_blank" rel="noopener">지금 신청하세요 →</a><div style="display:flex;align-items:center;gap:12px"><img src="p/qr.png" alt="신청폼 QR코드" style="width:96px;height:96px;border-radius:10px;border:3px solid var(--navy)"><span style="font-size:14px;font-weight:600;line-height:1.4">휴대폰 카메라로<br>찍어도 신청돼요</span></div></div>
+      <p class="small">준비물: 노트북 또는 PC + Claude · ChatGPT · Gemini 중 1개 유료 계정 · 신청 후 ZOOM 링크를 보내 드려요.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="band">나나쿡(nanakook) · 신청 forms.gle/i5SQXCKYaXmUS97q7 · 문의 카카오채널 pf.kakao.com/_tZxbUxj</footer>
+
+<script>
+// ── 신청폼 주소를 받으면 여기 한 줄만 바꾸면 버튼 두 개가 모두 연결돼요 ──
+const FORM_URL = 'https://forms.gle/i5SQXCKYaXmUS97q7';
+if (FORM_URL) document.querySelectorAll('#cta1, #cta2').forEach(a => a.href = FORM_URL);
+
+// 화면에 보이는 영상만 자동 재생
+const vids = document.querySelectorAll('video[data-src]');
+if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const io = new IntersectionObserver(es => es.forEach(en => {
+    const v = en.target;
+    if (en.isIntersecting) { if (!v.getAttribute('src')) v.src = v.dataset.src; const p = v.play(); if (p && p.catch) p.catch(() => {}); } else v.pause();
+  }), {threshold: 0.35});
+  vids.forEach(v => io.observe(v));
+} else {
+  vids.forEach(v => v.src = v.dataset.src);
+}
+</script>
+</html>
